@@ -3,17 +3,38 @@
     display: flex;
     flex-direction: column;
     label {
-      margin-bottom: 0.2rem;
+      display: flex;
+      flex-direction: column;
+      margin-block-end: 1rem;
+
+      input,
+      textarea {
+        margin-block-start: 0.2rem;
+      }
+      input {
+        max-width: 300px;
+      }
+      textarea {
+        height: 150px;
+      }
     }
-    input,
-    textarea {
-      margin-bottom: 1rem;
-    }
-    input {
-      max-width: 300px;
-    }
-    textarea {
-      height: 150px;
+    .imageInputContainer {
+      display: flex;
+      justify-content: center;
+      // border: 1px solid red;
+      .imageInput {
+        cursor: pointer;
+        .imageContainer {
+          max-width: 50%;
+          img {
+            max-width: 150px;
+          }
+        }
+        .imageButton {
+          padding: 1rem;
+          border: 1px dashed var(--doted-border);
+        }
+      }
     }
   }
 }
