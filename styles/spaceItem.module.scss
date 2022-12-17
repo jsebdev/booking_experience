@@ -1,0 +1,40 @@
+@import "mixins";
+
+.spaceContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  max-height: 600px;
+  .space {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    max-width: 400px;
+    height: 100%;
+    background-image: radial-gradient(
+      farthest-corner at 30% 30%,
+      var(--card-background-start) 0%,
+      var(--card-background-end) 90%
+    );
+    @include std-shadow(var(--shadow-color));
+    // background-image: radial-gradient(
+    //   farthest-corner at 40px 40px,
+    //   #f35 0%,
+    //   #43e 100%
+    // );
+    .spaceImage {
+      width: 100%;
+      aspect-ratio: 1;
+    }
+    .descriptionContainer {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+    }
+  }
+}

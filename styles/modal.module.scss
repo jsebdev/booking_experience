@@ -1,0 +1,33 @@
+.modalContainer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--modal-background-layer);
+
+  .modal {
+    padding: 2rem;
+    min-width: 50%;
+    max-width: 90%;
+    min-height: 50%;
+    border-radius: 10px;
+    background-image: radial-gradient(
+      farthest-corner at 30% 30%,
+      var(--modal-background-start) 0%,
+      var(--modal-background-end) 90%
+    );
+    position: relative;
+
+    .closeIcon {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
+}

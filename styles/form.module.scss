@@ -1,0 +1,19 @@
+.formContainer {
+  .form {
+    display: flex;
+    flex-direction: column;
+    label {
+      margin-bottom: 0.2rem;
+    }
+    input,
+    textarea {
+      margin-bottom: 1rem;
+    }
+    input {
+      max-width: 300px;
+    }
+    textarea {
+      height: 150px;
+    }
+  }
+}
