@@ -1,0 +1,18 @@
+@import "mixins";
+
+.bookings {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-block-start: 1rem;
+  .booking {
+    display: flex;
+    justify-content: center;
+    padding-block: 0.5rem;
+    padding-inline: 1rem;
+    @include card-background();
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}

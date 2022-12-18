@@ -11,10 +11,12 @@ export interface Space {
   name: string;
   description: string;
   image?: string | File | null;
-  bookings: {
-    [bookingId: string]: Booking;
-  };
+  bookings: Bookings;
   test?: boolean;
+}
+
+export interface Bookings {
+  [bookingId: string]: Booking;
 }
 
 export interface Booking {
