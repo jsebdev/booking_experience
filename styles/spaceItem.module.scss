@@ -6,12 +6,14 @@
   justify-content: center;
   height: 100%;
   max-height: 600px;
+  cursor: pointer;
   .space {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     padding: 0.8rem;
     border-radius: 8px;
+    width: 100%;
     max-width: 400px;
     height: 100%;
     background-image: radial-gradient(
@@ -20,14 +22,17 @@
       var(--card-background-end) 90%
     );
     @include std-shadow(var(--shadow-color));
-    // background-image: radial-gradient(
-    //   farthest-corner at 40px 40px,
-    //   #f35 0%,
-    //   #43e 100%
-    // );
-    .spaceImage {
+    .imageContainer {
       width: 100%;
-      aspect-ratio: 1;
+      padding-block-end: 1rem;
+      margin-block-end: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+      .image {
+        aspect-ratio: 3/2;
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+      }
     }
     .descriptionContainer {
       overflow: hidden;

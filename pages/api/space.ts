@@ -1,4 +1,4 @@
-import { IMAGES_DIR } from "./../../config/constants";
+import { UPLOADED_IMAGES_PATH } from "./../../config/constants";
 import formidable from "formidable";
 import { NextApiHandler, NextApiRequest } from "next";
 import path from "path";
@@ -16,7 +16,7 @@ const readFile = (
 ): Promise<{ fields: formidable.Fields; files: formidable.Files }> => {
   const options: formidable.Options = {};
   if (saveLocally) {
-    options.uploadDir = path.join(process.cwd(), IMAGES_DIR);
+    options.uploadDir = path.join(process.cwd(), UPLOADED_IMAGES_PATH);
     options.filename = (name, ext, path, form) => {
       return Date.now().toString() + "_" + path.originalFilename;
     };
@@ -32,13 +32,13 @@ const readFile = (
 
 const handler: NextApiHandler = async (req, res) => {
   try {
-    await fs.readdir(path.join(process.cwd(), IMAGES_DIR));
+    await fs.readdir(path.join(process.cwd(), UPLOADED_IMAGES_PATH));
   } catch (error) {
-    await fs.mkdir(path.join(process.cwd(), IMAGES_DIR));
+    await fs.mkdir(path.join(process.cwd(), UPLOADED_IMAGES_PATH));
   }
 
-  await readFile(req);
-  res.json({ done: "ok" });
+  const data = await readFile(req);
+  res.json({ done: "ok", data });
 };
 
 export default handler;

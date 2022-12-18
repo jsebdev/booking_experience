@@ -10,9 +10,11 @@ export interface Space {
   id: string;
   name: string;
   description: string;
+  image?: string | null;
   bookings: {
     [bookingId: string]: Booking;
   };
+  test?: boolean;
 }
 
 export interface Booking {

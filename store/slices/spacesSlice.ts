@@ -16,14 +16,19 @@ const initialState: SpaceState = {
     "test-space-1": {
       id: "test-space-1",
       name: "Test Space 1",
-      description: "Test Space 1 description",
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
       bookings: {},
+      image: "images/room1.jpeg",
+      test: true,
     },
     "test-space-2": {
       id: "test-space-2",
       name: "Test Space 2",
       description: "Test Space 2 description hola.\n adios",
       bookings: {},
+      image: "images/building1.jpg",
+      test: true,
     },
     "test-space-3": {
       id: "test-space-3",
@@ -31,6 +36,8 @@ const initialState: SpaceState = {
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
       bookings: {},
+      image: "images/room2.jpeg",
+      test: true,
     },
   },
 };
