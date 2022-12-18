@@ -5,10 +5,16 @@ import { addSpace } from "../store/slices/spacesSlice";
 import formStyles from "../styles/form.module.scss";
 import { useSpaceForm } from "./hooks/useSpaceForm";
 
+interface CreateSpaceFormProps {
+  createSpace: (space: Space) => void;
+  onClose: () => void;
+}
+
 export const CreateSpaceForm = connect(null, (dispatch) => ({
-  createSpace: (space: Space) =>
-    dispatch(addSpace({ spaceId: space.id, space })),
-}))(({ createSpace }) => {
+  createSpace: (space: Space) => {
+    dispatch(addSpace({ spaceId: space.id, space }));
+  },
+}))(({ onClose, createSpace }: CreateSpaceFormProps) => {
   const {
     handleSave,
     handleImageChange,
@@ -17,7 +23,7 @@ export const CreateSpaceForm = connect(null, (dispatch) => ({
     nameRef,
     descriptionRef,
     errorMessage,
-  } = useSpaceForm(createSpace);
+  } = useSpaceForm(createSpace, onClose);
 
   return (
     <div className={formStyles.formContainer}>

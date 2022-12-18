@@ -1,6 +1,5 @@
 import { Stack } from "@mantine/core";
 import React from "react";
-import { UPLOADED_IMAGES_DIR } from "../config/constants";
 import { imageSrc } from "../helpers/utils";
 import { Space } from "../store/slices/spaces.types";
 import spaceItemStyles from "../styles/spaceItem.module.scss";
@@ -17,7 +16,12 @@ export const Item = ({ space }: { space: Space }) => {
         </div>
         <h4>{space.name}</h4>
         <div className={spaceItemStyles.descriptionContainer}>
-          <span>{space.description}</span>
+          {space.description
+            .split(/[\n\r]/)
+            .filter((p) => p !== "")
+            .map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
         </div>
       </div>
     </div>

@@ -3,7 +3,10 @@ import axios from "axios";
 import { Space } from "../../store/slices/spaces.types";
 import { makeId } from "../../helpers/makeId";
 
-export const useSpaceForm = (createSpace: (space: Space) => {}) => {
+export const useSpaceForm = (
+  createSpace: (space: Space) => void,
+  onClose: () => void
+) => {
   const [uploadingData, setUploadingData] = React.useState(false);
   const [selectedImage, setSelectedImage] = React.useState("");
   const [selectedFile, setSelectedFile] = React.useState<File>();
@@ -45,6 +48,7 @@ export const useSpaceForm = (createSpace: (space: Space) => {}) => {
     };
     createSpace(space);
     setUploadingData(false);
+    onClose();
   };
 
   // const handleImageChoose = () => {
