@@ -11,7 +11,6 @@ export const useSpaceForm = (
   const [selectedImage, setSelectedImage] = React.useState("");
   const [selectedFile, setSelectedFile] = React.useState<File>();
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
-  // const imageInputRef = React.createRef<HTMLInputElement>();
   const nameRef = React.createRef<HTMLInputElement>();
   const descriptionRef = React.createRef<HTMLTextAreaElement>();
 
@@ -25,37 +24,17 @@ export const useSpaceForm = (
     }
     setErrorMessage(null);
     setUploadingData(true);
-    let uploadedImage: null | string = null;
-    if (selectedFile) {
-      try {
-        const formData = new FormData();
-        formData.append("image", selectedFile);
-        const { data } = await axios.post("/api/space", formData);
-        console.log(data);
-        uploadedImage = data.data.files.image.newFilename;
-      } catch (error: any) {
-        console.log(error.response?.data);
-      }
-    } else {
-      console.log("No image selected");
-    }
     const space: Space = {
       id: makeId(name),
       name,
       description,
-      image: uploadedImage,
+      image: selectedFile,
       bookings: {},
     };
     createSpace(space);
     setUploadingData(false);
     onClose();
   };
-
-  // const handleImageChoose = () => {
-  //   console.log("se hizo click");
-  //   debugger;
-  //   imageInputRef.current?.click();
-  // };
 
   const handleImageChange: React.ChangeEventHandler<HTMLInputElement> = ({
     target,

@@ -10,7 +10,7 @@ export interface Space {
   id: string;
   name: string;
   description: string;
-  image?: string | null;
+  image?: string | File | null;
   bookings: {
     [bookingId: string]: Booking;
   };

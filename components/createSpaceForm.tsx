@@ -45,7 +45,6 @@ export const CreateSpaceForm = connect(null, (dispatch) => ({
             <input
               id="space_image"
               name="space_image"
-              // ref={imageInputRef}
               type="file"
               hidden
               onChange={handleImageChange}
