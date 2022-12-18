@@ -1,5 +1,5 @@
-import { Button, Center } from "@mantine/core";
 import React from "react";
+import { Button } from "./button";
 import { CreateSpaceForm } from "./createSpaceForm";
 import { Modal } from "./modal";
 
@@ -10,9 +10,7 @@ export const CreateSpaceButton = () => {
   };
   return (
     <>
-      <Center m="lg">
-        <Button onClick={() => setShowModal(true)}>Create new Space</Button>
-      </Center>
+      <Button onClick={() => setShowModal(true)}>Create new Space</Button>
       <Modal opened={showModal} onClose={closeModal}>
         <CreateSpaceForm onClose={closeModal} />
       </Modal>

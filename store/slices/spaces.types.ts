@@ -20,7 +20,6 @@ export interface Space {
 export interface Booking {
   spaceId: string;
   id: string;
-  name: string;
   start_date: Date;
   end_date: Date;
 }

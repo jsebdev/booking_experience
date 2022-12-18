@@ -12,6 +12,8 @@
   --border-card-color: rgba(152, 152, 152, 0.554);
   --card-background-start: rgb(74, 56, 115);
   --card-background-end: rgb(52, 19, 113);
+  --card-background-hover-start: rgb(89, 70, 132);
+  --card-background-hover-end: rgb(60, 27, 123);
 
   --shadow-color: rgba(239, 239, 239, 0.228);
 
@@ -23,6 +25,11 @@
   --border-color: rgba(222, 222, 222, 0.18);
 
   --error-color: rgb(250, 111, 111);
+
+  --button-background-start: rgb(40, 21, 248);
+  --button-background-end: rgb(30, 8, 169);
+  --button-background-hover-start: rgb(55, 38, 240);
+  --button-background-hover-end: rgb(44, 27, 154);
 }
 html {
   color-scheme: dark;

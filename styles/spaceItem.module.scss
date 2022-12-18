@@ -16,11 +16,7 @@
     width: 100%;
     max-width: 400px;
     height: 100%;
-    background-image: radial-gradient(
-      farthest-corner at 30% 30%,
-      var(--card-background-start) 0%,
-      var(--card-background-end) 90%
-    );
+    @include card-background();
     @include std-shadow(var(--shadow-color));
     .imageContainer {
       width: 100%;

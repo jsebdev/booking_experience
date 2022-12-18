@@ -1,0 +1,21 @@
+$light-hover: 10%;
+
+.button {
+  background-image: radial-gradient(
+    farthest-corner at 30% 30%,
+    var(--button-background-start) 0%,
+    var(--button-background-end) 90%
+  );
+  padding-block: 0.8rem;
+  padding-inline: 1rem;
+  border: none;
+  font-weight: 600;
+  border-radius: 5px;
+  &:hover {
+    background-image: radial-gradient(
+      farthest-corner at 30% 30%,
+      var(--button-background-hover-start) 0%,
+      var(--button-background-hover-end) 90%
+    );
+  }
+}

@@ -1,0 +1,40 @@
+@import "mixins";
+
+.title {
+  text-align: center;
+}
+
+.sectionTitle,
+.title {
+  margin-block-start: 2rem;
+}
+
+.imageContainer {
+  padding: 1rem;
+  img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+  }
+}
+.bookings {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-block-start: 1rem;
+  .booking {
+    display: flex;
+    justify-content: center;
+    padding-block: 0.5rem;
+    padding-inline: 1rem;
+    @include card-background();
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
+.buttonContainer {
+  padding-block: 2rem;
+  display: flex;
+  justify-content: center;
+}

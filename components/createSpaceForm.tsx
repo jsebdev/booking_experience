@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Space } from "../store/slices/spaces.types";
 import { addSpace } from "../store/slices/spacesSlice";
 import formStyles from "../styles/form.module.scss";
+import { Button } from "./button";
 import { useSpaceForm } from "./hooks/useSpaceForm";
 
 interface CreateSpaceFormProps {
@@ -64,12 +65,9 @@ export const CreateSpaceForm = connect(null, (dispatch) => ({
           </label>
         </div>
         <div className={formStyles.submitContainer}>
-          <input
-            disabled={uploadingData}
-            type="submit"
-            value={uploadingData ? "Saving space..." : "Create space"}
-            className={formStyles.button}
-          />
+          <Button disabled={uploadingData} type="submit">
+            {uploadingData ? "Saving space..." : "Create space"}
+          </Button>
         </div>
         {errorMessage && (
           <p className={formStyles.errorMessage}>* {errorMessage}</p>

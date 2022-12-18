@@ -1,3 +1,18 @@
 @mixin std-shadow($color) {
   box-shadow: 2px 3px 5px 3px $color;
 }
+
+@mixin card-background {
+  background-image: radial-gradient(
+    farthest-corner at 30% 30%,
+    var(--card-background-start) 0%,
+    var(--card-background-end) 90%
+  );
+  &:hover {
+    background-image: radial-gradient(
+      farthest-corner at 30% 30%,
+      var(--card-background-hover-start) 0%,
+      var(--card-background-hover-end) 90%
+    );
+  }
+}
