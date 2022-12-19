@@ -20,9 +20,14 @@ const SpaceDetails = () => {
           <div className={spaceDetailsStyles.imageContainer}>
             <img src={imageSrc(space.image, space.test)} />
           </div>
-          <div className={spaceDetailsStyles.description}>
-            {space.description}
-          </div>
+          {space.description
+            .split(/[\n\r]/)
+            .filter((p) => p !== "")
+            .map((p, i) => (
+              <div className={spaceDetailsStyles.description} key={i}>
+                {p}
+              </div>
+            ))}
           <h3 className={spaceDetailsStyles.sectionTitle}>Current Bookings:</h3>
           <BookingsSection bookings={space.bookings} />
           <h3 className={spaceDetailsStyles.sectionTitle}>Make new booking:</h3>

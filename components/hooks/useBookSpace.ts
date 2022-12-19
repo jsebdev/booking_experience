@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, subDays } from "date-fns";
 import { MouseEventHandler, useState } from "react";
 import { DateRange, Matcher } from "react-day-picker";
 import { Booking } from "../../store/slices/spaces.types";
@@ -46,27 +46,23 @@ export const useBookSpace = ({
       footer = `${format(range.from, "PPP")}–${format(range.to, "PPP")}`;
     }
   }
-
-  // const ddisabledDays = {
-  //   // before: new Date(),
-  //   ...bookings
-  //     .filter((booking) => booking.id !== bookingId)
-  //     .map((booking) => ({
-  //       from: booking.start_date as Date,
-  //       to: booking.end_date as Date,
-  //     })),
-  // };
   const disabledDays: Matcher[] = bookings
     .filter((booking) => booking.id !== bookingId)
     .map((booking) => ({
       from: booking.start_date as Date,
-      to: booking.end_date as Date,
+      to: subDays(booking.end_date as Date, 1),
     }));
   disabledDays.push({ before: new Date() });
 
   const checkErrors = (): boolean => {
     if (!range?.from || !range?.to) {
       setErrorMessage("Please select a date range.");
+      return true;
+    }
+    if (range.from.getDate() === range.to.getDate()) {
+      setErrorMessage(
+        "Please select different dates for the beginning and end of your booking."
+      );
       return true;
     }
     const overlapping = overLappingBookings(range, bookings, bookingId);
