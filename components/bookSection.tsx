@@ -32,7 +32,6 @@ const BookSection = ({ bookings, spaceId }: BookSectionProps) => {
         footer={footer}
         onSelect={setRange}
         disabled={disabledDays}
-        // numberOfMonths={2}
       />
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       <div className={bookSectionStyles.buttonContainer}>

@@ -2,15 +2,40 @@ import { format } from "date-fns";
 import { MouseEventHandler, useState } from "react";
 import { DateRange } from "react-day-picker";
 import { Booking } from "../../store/slices/spaces.types";
-import { BookingOverlapping, useBookSpaceOptions } from "./useBookSpace.types";
-import { addSpaceBooking } from "../../store/slices/spacesSlice";
+import {
+  BookingOverlapping,
+  useBookSpaceOptions,
+  useBookSpaceReturn,
+} from "./useBookSpace.types";
+import {
+  addSpaceBooking,
+  updateSpaceBooking,
+} from "../../store/slices/spacesSlice";
 import { makeId } from "../../helpers/makeId";
 import { useAppDispatch } from "../../store/store.hooks";
 
-export const useBookSpace = ({ bookings, spaceId }: useBookSpaceOptions) => {
+/**
+ * useBookSpace provides all logic for creating and updating bookings
+ * @param options - object containing booking options
+ * @returns object containing the following properties:
+ * - range: selected range of Dates
+ * - setRange: function to update the selected range
+ * - footer: message to display at the bottom of the date selector
+ * - disabledDays: Array of dates ranges that should be disabled
+ * - errorMessage: Error message to display at the bottom of the date selector
+ * - onCreateBooking: function to create a new booking
+ * - onUpdateBooking: function to update an existing booking
+ */
+export const useBookSpace = ({
+  bookings,
+  spaceId,
+  defaultRange,
+  bookingId,
+}: useBookSpaceOptions): useBookSpaceReturn => {
   const dispatch = useAppDispatch();
-  const [range, setRange] = useState<DateRange | undefined>();
+  const [range, setRange] = useState<DateRange | undefined>(defaultRange);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   let footer = "Please pick the first day.";
   if (range?.from) {
     if (!range.to) {
@@ -19,14 +44,16 @@ export const useBookSpace = ({ bookings, spaceId }: useBookSpaceOptions) => {
       footer = `${format(range.from, "PPP")}–${format(range.to, "PPP")}`;
     }
   }
+
   const disabledDays = bookings.map((booking) => ({
     from: booking.start_date,
     to: booking.end_date,
   }));
-  const onCreateBooking: MouseEventHandler<HTMLButtonElement> = () => {
+
+  const checkErrors = (): boolean => {
     if (!range?.from || !range?.to) {
       setErrorMessage("Please select a date range.");
-      return;
+      return true;
     }
     const overlapping = overLappingBookings(range, bookings);
     if (overlapping.overlapping) {
@@ -36,18 +63,33 @@ export const useBookSpace = ({ bookings, spaceId }: useBookSpaceOptions) => {
           "PPP"
         )} and ${format(overlapping.overlappingBooking!.end_date, "PPP")}`
       );
-      return;
+      return true;
     }
     setErrorMessage(null);
-    const booking: Booking = {
-      spaceId,
-      id: makeId(`${new Date().getTime()}`),
-      start_date: range.from,
-      end_date: range.to,
-    };
+    return false;
+  };
+
+  const makeBooking = (newBooking: boolean): Booking => ({
+    spaceId,
+    id: newBooking ? makeId(`${new Date().getTime()}`) : (bookingId as string),
+    start_date: range?.from as Date,
+    end_date: range?.to as Date,
+  });
+
+  const onCreateBooking: MouseEventHandler<HTMLButtonElement> = () => {
+    if (checkErrors()) return;
+    const booking: Booking = makeBooking(true);
     dispatch(addSpaceBooking(booking));
     setRange(undefined);
   };
+
+  const onUpdateBooking: MouseEventHandler<HTMLButtonElement> = () => {
+    if (checkErrors()) return;
+    const booking: Booking = makeBooking(false);
+    dispatch(updateSpaceBooking(booking));
+    setRange(undefined);
+  };
+
   return {
     range,
     setRange,
@@ -55,6 +97,7 @@ export const useBookSpace = ({ bookings, spaceId }: useBookSpaceOptions) => {
     disabledDays,
     errorMessage,
     onCreateBooking,
+    onUpdateBooking,
   };
 };
 
