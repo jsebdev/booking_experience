@@ -6,6 +6,7 @@ import {
   SelectRangeEventHandler,
 } from "react-day-picker";
 import dayPickerStyles from "react-day-picker/dist/style.module.css";
+import dateRangeInputStyles from "../styles/dateRangeInput.module.scss";
 
 interface DateRangeInputProps {
   range: DateRange | undefined;
@@ -26,7 +27,7 @@ export const DateRangeInput = ({
     ...dayPickerStyles,
   };
   return (
-    <>
+    <div className={dateRangeInputStyles.container}>
       <DayPicker
         classNames={dayPickerClassName}
         mode="range"
@@ -36,6 +37,6 @@ export const DateRangeInput = ({
         disabled={disabledDays}
       />
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-    </>
+    </div>
   );
 };

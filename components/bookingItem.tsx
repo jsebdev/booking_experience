@@ -23,8 +23,8 @@ export const BookingItem = ({
   const booking = useAppSelector(selectBooking(bookingId, spaceId));
   const space = useAppSelector(selectSpace(spaceId));
   const currentRange: DateRange = {
-    from: booking.start_date,
-    to: booking.end_date,
+    from: booking.start_date as Date,
+    to: booking.end_date as Date,
   };
   const {
     range,
@@ -50,7 +50,8 @@ export const BookingItem = ({
     <div className={bookingItemStyles.bookingContainer}>
       <div>Current Booking:</div>
       <div>
-        {format(booking.start_date, "PPP")} to {format(booking.end_date, "PPP")}
+        {format(booking.start_date as Date, "PPP")} to{" "}
+        {format(booking.end_date as Date, "PPP")}
       </div>
       <DateRangeInput
         range={range}
