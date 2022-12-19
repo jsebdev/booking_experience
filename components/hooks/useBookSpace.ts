@@ -2,15 +2,13 @@ import { format } from "date-fns";
 import { MouseEventHandler, useState } from "react";
 import { DateRange } from "react-day-picker";
 import { Booking } from "../../store/slices/spaces.types";
-import { BookingOverlapping, useBookingOptions } from "./useBooking.types";
+import { BookingOverlapping, useBookSpaceOptions } from "./useBookSpace.types";
 import { addSpaceBooking } from "../../store/slices/spacesSlice";
 import { makeId } from "../../helpers/makeId";
+import { useAppDispatch } from "../../store/store.hooks";
 
-export const useBookSpace = ({
-  bookings,
-  dispatch,
-  spaceId,
-}: useBookingOptions) => {
+export const useBookSpace = ({ bookings, spaceId }: useBookSpaceOptions) => {
+  const dispatch = useAppDispatch();
   const [range, setRange] = useState<DateRange | undefined>();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   let footer = "Please pick the first day.";
