@@ -4,3 +4,15 @@
   align-items: center;
   width: min-content;
 }
+
+.day {
+  // border: 1px solid red;
+  border-radius: 50%;
+  &:hover {
+    background: yellow;
+  }
+}
+
+.today {
+  background: rgb(228, 79, 79);
+}

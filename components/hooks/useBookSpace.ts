@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { MouseEventHandler, useState } from "react";
-import { DateRange } from "react-day-picker";
+import { DateRange, Matcher } from "react-day-picker";
 import { Booking } from "../../store/slices/spaces.types";
 import {
   BookingOverlapping,
@@ -47,12 +47,22 @@ export const useBookSpace = ({
     }
   }
 
-  const disabledDays = bookings
+  // const ddisabledDays = {
+  //   // before: new Date(),
+  //   ...bookings
+  //     .filter((booking) => booking.id !== bookingId)
+  //     .map((booking) => ({
+  //       from: booking.start_date as Date,
+  //       to: booking.end_date as Date,
+  //     })),
+  // };
+  const disabledDays: Matcher[] = bookings
     .filter((booking) => booking.id !== bookingId)
     .map((booking) => ({
       from: booking.start_date as Date,
       to: booking.end_date as Date,
     }));
+  disabledDays.push({ before: new Date() });
 
   const checkErrors = (): boolean => {
     if (!range?.from || !range?.to) {

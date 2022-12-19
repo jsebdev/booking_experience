@@ -25,6 +25,8 @@ export const DateRangeInput = ({
 }: DateRangeInputProps) => {
   const dayPickerClassName: ClassNames = {
     ...dayPickerStyles,
+    day_today: dateRangeInputStyles.today,
+    // day: dateRangeInputStyles.day,
   };
   return (
     <div className={dateRangeInputStyles.container}>
