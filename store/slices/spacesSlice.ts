@@ -5,6 +5,7 @@ import {
   AddBookingAction,
   AddSpaceAction,
   Booking,
+  Bookings,
   DeleteBookingAction,
   RemoveSpaceAction,
   Space,
@@ -24,38 +25,38 @@ const initialState: SpaceState = {
         "test-booking-1": {
           id: "test-booking-1",
           spaceId: "test-space-1",
-          start_date: addDays(new Date(), 1),
-          end_date: addDays(new Date(), 10),
+          start_date: addDays(new Date(), 1).toString(),
+          end_date: addDays(new Date(), 10).toString(),
         },
         "test-booking-2": {
           id: "test-booking-2",
           spaceId: "test-space-1",
-          start_date: addDays(new Date(), 30),
-          end_date: addDays(new Date(), 35),
+          start_date: addDays(new Date(), 30).toString(),
+          end_date: addDays(new Date(), 35).toString(),
         },
         "test-booking-3": {
           id: "test-booking-3",
           spaceId: "test-space-1",
-          start_date: addDays(new Date(), 14),
-          end_date: addDays(new Date(), 20),
+          start_date: addDays(new Date(), 14).toString(),
+          end_date: addDays(new Date(), 20).toString(),
         },
         "test-booking-4": {
           id: "test-booking-4",
           spaceId: "test-space-1",
-          start_date: addDays(new Date(), 140),
-          end_date: addDays(new Date(), 400),
+          start_date: addDays(new Date(), 140).toString(),
+          end_date: addDays(new Date(), 400).toString(),
         },
         "test-booking-5": {
           id: "test-booking-5",
           spaceId: "test-space-1",
-          start_date: addDays(new Date(), 50),
-          end_date: addDays(new Date(), 53),
+          start_date: addDays(new Date(), 50).toString(),
+          end_date: addDays(new Date(), 53).toString(),
         },
         "test-booking-6": {
           id: "test-booking-6",
           spaceId: "test-space-1",
-          start_date: addDays(new Date(), 20),
-          end_date: addDays(new Date(), 30),
+          start_date: addDays(new Date(), 20).toString(),
+          end_date: addDays(new Date(), 30).toString(),
         },
       },
       image: "/images/room1.jpeg",
@@ -107,7 +108,7 @@ export const counterSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
+// Actions
 export const {
   addSpace,
   removeSpace,
@@ -116,14 +117,41 @@ export const {
   updateSpaceBooking,
 } = counterSlice.actions;
 
-export const selectSpaces = (state: RootState): Spaces => state.spaces.spaces;
+//reducer
+export const spaceReducer = counterSlice.reducer;
+
+// selectors
+export const selectSpaces = (state: RootState): Spaces =>
+  spaces2WithDates(state.spaces.spaces);
 export const selectSpace =
   (id: string) =>
   (state: RootState): Space =>
-    state.spaces.spaces[id];
+    space2WithDates(state.spaces.spaces[id]);
 export const selectBooking =
   (bookingId: string, spaceId: string) =>
   (state: RootState): Booking =>
-    state.spaces.spaces[spaceId].bookings[bookingId];
+    booking2WithDates(state.spaces.spaces[spaceId].bookings[bookingId]);
 
-export const spaceReducer = counterSlice.reducer;
+// We always save dates as strings in the state to avoid "non-serializable" errors.
+// Therefore these special functions are used to convert all string dates from bookings to Date types
+// before returning them to the client since it's easier to work with Date types
+const booking2WithDates = (booking: Booking): Booking => ({
+  ...booking,
+  start_date: new Date(booking.start_date),
+  end_date: new Date(booking.end_date),
+});
+const space2WithDates = (space: Space): Space => ({
+  ...space,
+  bookings: Object.values(space.bookings).reduce<Bookings>(
+    (bookings, booking) => {
+      bookings[booking.id] = booking2WithDates(booking);
+      return bookings;
+    },
+    {}
+  ),
+});
+const spaces2WithDates = (spaces: Spaces): Spaces =>
+  Object.values(spaces).reduce<Spaces>((spaces, space) => {
+    spaces[space.id] = space2WithDates(space);
+    return spaces;
+  }, {});

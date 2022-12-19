@@ -22,8 +22,8 @@ export interface Bookings {
 export interface Booking {
   spaceId: string;
   id: string;
-  start_date: Date;
-  end_date: Date;
+  start_date: string | Date;
+  end_date: string | Date;
 }
 
 // action interfaces

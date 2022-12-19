@@ -49,8 +49,8 @@ export const useBookSpace = ({
   const disabledDays = bookings
     .filter((booking) => booking.id !== bookingId)
     .map((booking) => ({
-      from: booking.start_date,
-      to: booking.end_date,
+      from: booking.start_date as Date,
+      to: booking.end_date as Date,
     }));
 
   const checkErrors = (): boolean => {
@@ -62,9 +62,12 @@ export const useBookSpace = ({
     if (overlapping.overlapping) {
       setErrorMessage(
         `This dates overlaps the booking between ${format(
-          overlapping.overlappingBooking!.start_date,
+          overlapping.overlappingBooking!.start_date as Date,
           "PPP"
-        )} and ${format(overlapping.overlappingBooking!.end_date, "PPP")}`
+        )} and ${format(
+          overlapping.overlappingBooking!.end_date as Date,
+          "PPP"
+        )}`
       );
       return true;
     }
@@ -75,8 +78,8 @@ export const useBookSpace = ({
   const makeBooking = (newBooking: boolean): Booking => ({
     spaceId,
     id: newBooking ? makeId(`${new Date().getTime()}`) : (bookingId as string),
-    start_date: range?.from as Date,
-    end_date: range?.to as Date,
+    start_date: range?.from?.toString() as string,
+    end_date: range?.to?.toString() as string,
   });
 
   const onCreateBooking: MouseEventHandler<HTMLButtonElement> = () => {
