@@ -10,6 +10,14 @@
   --button-background-danger-hover-end: rgb(189, 6, 6);
   --button-foreground-color: white;
 
+  --doted-border: rgb(92, 92, 92);
+  --border-color: rgba(222, 222, 222, 0.18);
+
+  --button-background-start: rgb(40, 21, 248);
+  --button-background-end: rgb(30, 8, 169);
+  --button-background-hover-start: rgb(55, 38, 240);
+  --button-background-hover-end: rgb(44, 27, 154);
+
   // variables to change in light mode
   --foreground-rgb: rgb(255, 255, 255);
   --background-start-rgb: rgb(0, 0, 100);
@@ -27,15 +35,7 @@
   --modal-background-end: rgb(12, 2, 51);
   --modal-background-layer: rgba(162, 162, 162, 0.397);
 
-  --doted-border: rgb(92, 92, 92);
-  --border-color: rgba(222, 222, 222, 0.18);
-
   --error-color: rgb(250, 111, 111);
-
-  --button-background-start: rgb(40, 21, 248);
-  --button-background-end: rgb(30, 8, 169);
-  --button-background-hover-start: rgb(55, 38, 240);
-  --button-background-hover-end: rgb(44, 27, 154);
 }
 html {
   color-scheme: dark;
@@ -43,11 +43,23 @@ html {
 
 @media (prefers-color-scheme: light) {
   :root {
-    --foreground-rgb: rgba(0, 0, 0);
+    --foreground-rgb: rgb(0, 0, 0);
     --background-start-rgb: rgb(255, 255, 255);
-    --background-end-rgb: rgb(214, 219, 220);
+    --background-end-rgb: rgb(223, 223, 226);
 
-    --border-card-color: rgb(95, 95, 95);
+    --border-card-color: rgba(230, 230, 230, 0.554);
+    --card-background-start: rgb(226, 217, 248);
+    --card-background-end: rgb(199, 179, 236);
+    --card-background-hover-start: rgb(185, 171, 225);
+    --card-background-hover-end: rgb(176, 154, 219);
+
+    --shadow-color: rgba(191, 191, 191, 0.7);
+
+    --modal-background-start: rgb(198, 188, 255);
+    --modal-background-end: rgb(170, 156, 227);
+    --modal-background-layer: rgba(162, 162, 162, 0.397);
+
+    --error-color: rgb(228, 24, 24);
   }
   html {
     color-scheme: normal;
