@@ -26,6 +26,7 @@ import { useAppDispatch } from "../../store/store.hooks";
  * - errorMessage: Error message to display at the bottom of the date selector
  * - onCreateBooking: function to create a new booking
  * - onUpdateBooking: function to update an existing booking
+ * - disabled: boolean to determine if button is to update is disabled or not
  */
 export const useBookSpace = ({
   bookings,
@@ -104,6 +105,8 @@ export const useBookSpace = ({
     );
   };
 
+  const disabled = defaultRange === range || !range?.from || !range?.to;
+
   return {
     range,
     setRange,
@@ -113,6 +116,7 @@ export const useBookSpace = ({
     onCreateBooking,
     onUpdateBooking,
     onDeleteBooking,
+    disabled,
   };
 };
 

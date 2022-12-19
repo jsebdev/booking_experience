@@ -7,6 +7,7 @@ $light-hover: 10%;
   border: none;
   font-weight: 600;
   border-radius: 5px;
+  cursor: pointer;
   background-image: radial-gradient(
     farthest-corner at 30% 30%,
     var(--button-background-start) 0%,
@@ -18,6 +19,10 @@ $light-hover: 10%;
       var(--button-background-hover-start) 0%,
       var(--button-background-hover-end) 90%
     );
+  }
+  &.disabled {
+    background: gray;
+    cursor: not-allowed;
   }
   &.danger {
     background-image: radial-gradient(

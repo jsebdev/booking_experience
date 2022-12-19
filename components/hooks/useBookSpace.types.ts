@@ -23,4 +23,5 @@ export interface useBookSpaceReturn {
   onCreateBooking: MouseEventHandler<HTMLButtonElement>;
   onUpdateBooking: MouseEventHandler<HTMLButtonElement>;
   onDeleteBooking: () => void;
+  disabled: boolean;
 }

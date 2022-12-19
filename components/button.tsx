@@ -10,6 +10,7 @@ export const Button = ({
   children,
   onClick,
   variant = "primary",
+  disabled,
   ...rest
 }: ButtonProps) => {
   return (
@@ -17,9 +18,11 @@ export const Button = ({
       className={classNames({
         [buttonStyles.button]: true,
         [buttonStyles.danger]: variant === "danger",
+        [buttonStyles.disabled]: disabled,
       })}
       onClick={onClick}
       {...rest}
+      disabled={disabled}
     >
       {children}
     </button>
