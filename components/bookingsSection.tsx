@@ -23,8 +23,9 @@ export const BookingsSection = ({ bookings }: BookingsSectionProps) => {
     <>
       <Modal opened={showBookingModal} onClose={closeModal}>
         <BookingItem
-          booking={selectedBooking as Booking}
+          bookingId={selectedBooking?.id as string}
           onClose={closeModal}
+          spaceId={selectedBooking?.spaceId as string}
         />
       </Modal>
       <div className={bookingSectionStyles.bookingsContainer}>

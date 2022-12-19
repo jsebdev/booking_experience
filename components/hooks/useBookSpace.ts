@@ -9,6 +9,7 @@ import {
 } from "./useBookSpace.types";
 import {
   addSpaceBooking,
+  deleteSpaceBooking,
   updateSpaceBooking,
 } from "../../store/slices/spacesSlice";
 import { makeId } from "../../helpers/makeId";
@@ -45,17 +46,19 @@ export const useBookSpace = ({
     }
   }
 
-  const disabledDays = bookings.map((booking) => ({
-    from: booking.start_date,
-    to: booking.end_date,
-  }));
+  const disabledDays = bookings
+    .filter((booking) => booking.id !== bookingId)
+    .map((booking) => ({
+      from: booking.start_date,
+      to: booking.end_date,
+    }));
 
   const checkErrors = (): boolean => {
     if (!range?.from || !range?.to) {
       setErrorMessage("Please select a date range.");
       return true;
     }
-    const overlapping = overLappingBookings(range, bookings);
+    const overlapping = overLappingBookings(range, bookings, bookingId);
     if (overlapping.overlapping) {
       setErrorMessage(
         `This dates overlaps the booking between ${format(
@@ -87,7 +90,15 @@ export const useBookSpace = ({
     if (checkErrors()) return;
     const booking: Booking = makeBooking(false);
     dispatch(updateSpaceBooking(booking));
-    setRange(undefined);
+  };
+
+  const onDeleteBooking = () => {
+    dispatch(
+      deleteSpaceBooking({
+        spaceId: spaceId,
+        bookingId: bookingId as string,
+      })
+    );
   };
 
   return {
@@ -98,14 +109,18 @@ export const useBookSpace = ({
     errorMessage,
     onCreateBooking,
     onUpdateBooking,
+    onDeleteBooking,
   };
 };
 
 const overLappingBookings = (
   range: DateRange,
-  bookings: Booking[]
+  bookings: Booking[],
+  currentBookingId?: string
 ): BookingOverlapping => {
-  for (let booking of bookings) {
+  for (let booking of bookings.filter(
+    (booking) => booking.id !== currentBookingId
+  )) {
     if (
       (booking.start_date >= (range.from as Date) &&
         booking.start_date < (range.to as Date)) ||

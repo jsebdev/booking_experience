@@ -4,6 +4,7 @@ import { RootState } from "../store";
 import {
   AddBookingAction,
   AddSpaceAction,
+  Booking,
   DeleteBookingAction,
   RemoveSpaceAction,
   Space,
@@ -120,5 +121,9 @@ export const selectSpace =
   (id: string) =>
   (state: RootState): Space =>
     state.spaces.spaces[id];
+export const selectBooking =
+  (bookingId: string, spaceId: string) =>
+  (state: RootState): Booking =>
+    state.spaces.spaces[spaceId].bookings[bookingId];
 
 export const spaceReducer = counterSlice.reducer;
