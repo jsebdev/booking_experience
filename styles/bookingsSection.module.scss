@@ -1,18 +1,26 @@
 @import "mixins";
 
-.bookings {
+.bookingsContainer {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  padding-block-start: 1rem;
-  .booking {
-    display: flex;
-    justify-content: center;
-    padding-block: 0.5rem;
-    padding-inline: 1rem;
-    @include card-background();
-    border-radius: 5px;
-    cursor: pointer;
+  .bookings {
+    // display: inline-flex;
+    // flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    margin: auto;
+    width: 90%;
+    gap: 0.5rem;
+    padding-block-start: 1rem;
+    .booking {
+      display: flex;
+      justify-content: center;
+      padding-block: 0.5rem;
+      padding-inline: 1rem;
+      @include card-background();
+      border-radius: 5px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
   }
 }

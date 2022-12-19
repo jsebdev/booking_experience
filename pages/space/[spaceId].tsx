@@ -20,12 +20,13 @@ const SpaceDetails = () => {
           <div className={spaceDetailsStyles.imageContainer}>
             <img src={imageSrc(space.image, space.test)} />
           </div>
+          <div className={spaceDetailsStyles.description}>
+            {space.description}
+          </div>
           <h3 className={spaceDetailsStyles.sectionTitle}>Current Bookings:</h3>
           <BookingsSection bookings={space.bookings} />
-          <h3 className={spaceDetailsStyles.sectionTitle}>
-            Book a new booking:
-          </h3>
-          <BookSection />
+          <h3 className={spaceDetailsStyles.sectionTitle}>Make new booking:</h3>
+          <BookSection bookings={space.bookings} spaceId={spaceId as string} />
         </>
       ) : (
         <p>space not found</p>

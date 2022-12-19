@@ -69,9 +69,7 @@ export const CreateSpaceForm = connect(null, (dispatch) => ({
             {uploadingData ? "Saving space..." : "Create space"}
           </Button>
         </div>
-        {errorMessage && (
-          <p className={formStyles.errorMessage}>* {errorMessage}</p>
-        )}
+        {errorMessage && <p className="error-message">* {errorMessage}</p>}
       </form>
     </div>
   );

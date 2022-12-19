@@ -71,3 +71,10 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.error-message {
+  margin-block: 1rem;
+  color: var(--error-color);
+  font-weight: bold;
+  text-align: center;
+}

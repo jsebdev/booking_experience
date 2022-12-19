@@ -2294,6 +2294,11 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
+react-day-picker@^8.4.1:
+  version "8.4.1"
+  resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-8.4.1.tgz#341572d7110d7e286f311f8f173ed9cb304eae6a"
+  integrity sha512-uqp/d3POv7127MmL7A16BNW746zYM/CxwfFdVanHMunKh2/8Y2a188KUpiHZH2Ck8IQlcS0I5HgC7xpRbBxK9w==
+
 react-dom@18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.2.0.tgz#22aaf38708db2674ed9ada224ca4aa708d821e3d"

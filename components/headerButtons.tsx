@@ -7,12 +7,13 @@ import { Button } from "./button";
 export const HeaderButtons = ({ home }: { home: boolean }) => {
   return (
     <Group mt="2rem" mb="3rem" position="center">
-      {!home && (
+      {home ? (
+        <CreateSpaceButton />
+      ) : (
         <Link href="/">
           <Button>Go home</Button>
         </Link>
       )}
-      <CreateSpaceButton />
     </Group>
   );
 };
