@@ -6,7 +6,7 @@ import { BookingOverlapping, useBookingOptions } from "./useBooking.types";
 import { addSpaceBooking } from "../../store/slices/spacesSlice";
 import { makeId } from "../../helpers/makeId";
 
-export const useBooking = ({
+export const useBookSpace = ({
   bookings,
   dispatch,
   spaceId,

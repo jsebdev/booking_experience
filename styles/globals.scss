@@ -4,7 +4,13 @@
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+  --button-background-danger-start: rgb(246, 85, 85);
+  --button-background-danger-end: rgb(222, 11, 11);
+  --button-background-danger-hover-start: rgb(198, 67, 67);
+  --button-background-danger-hover-end: rgb(189, 6, 6);
+  --button-foreground-color: white;
 
+  // variables to change in light mode
   --foreground-rgb: rgb(255, 255, 255);
   --background-start-rgb: rgb(0, 0, 100);
   --background-end-rgb: rgb(0, 0, 10);

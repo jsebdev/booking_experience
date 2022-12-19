@@ -6,7 +6,7 @@ import { Bookings } from "../store/slices/spaces.types";
 import { useAppDispatch } from "../store/store.hooks";
 import bookSectionStyles from "../styles/bookSection.module.scss";
 import { Button } from "./button";
-import { useBooking } from "./hooks/useBooking";
+import { useBookSpace } from "./hooks/useBookSpace";
 
 interface BookSectionProps {
   bookings: Bookings;
@@ -25,7 +25,7 @@ const BookSection = ({ bookings, spaceId }: BookSectionProps) => {
     disabledDays,
     errorMessage,
     onCreateBooking,
-  } = useBooking({ bookings: Object.values(bookings), dispatch, spaceId });
+  } = useBookSpace({ bookings: Object.values(bookings), dispatch, spaceId });
   return (
     <div className={bookSectionStyles.bookSection}>
       <DayPicker

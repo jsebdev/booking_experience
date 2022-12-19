@@ -1,0 +1,19 @@
+.bookingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  gap: 1rem;
+
+  .date {
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: 2px dashed var(--button-background-start);
+    padding: 1.5rem;
+    border-radius: 50%;
+  }
+  .to {
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+}
