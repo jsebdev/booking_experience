@@ -60,7 +60,7 @@ The house has a large backyard perfect for hosting summer barbecues and get-toge
           end_date: addDays(new Date(), 30).toString(),
         },
       },
-      image: "/images/room1.jpeg",
+      image: "/images/room1-min.jpeg",
       test: true,
     },
     "test-space-2": {
@@ -72,7 +72,7 @@ The building looks red in the evening since it's located by a marina. Every afte
 The building is one of the most iconic in Hong Kong. It's so famous that even people from other countries know about it. Many have seen photos or videos online of tourists visiting Hong Kong staring up at the red beauty with wonder in their eyes. Other visitors come to Hong Kong for business or education purposes- then decide to rent an apartment within the red beauty tower complex for their stay. The building itself is beautiful, but its interior is also well-equipped for living in modern times. Many people move into this apartment complex and enjoy all its has to offer.\n
       `,
       bookings: {},
-      image: "/images/building1.jpg",
+      image: "/images/building1-min.jpg",
       test: true,
     },
     "test-space-3": {
@@ -84,7 +84,7 @@ The building is one of the most iconic in Hong Kong. It's so famous that even pe
 We love your enthusiasm for trying to copy this text! If you're clever enough to try to copy this text, you're clever enough to know Smodin can help make your work 10 times easier! Please show your support by upgrading to a free account, you'll get access to new writing methods, super charge (our 10x larger writing model), longer writing content, and full content access. There are many other great features too, including unlimited plagiarism checks, unlimited rewrites, more credits, and access to the newest AI features Smodin has to offer!\n
         `,
       bookings: {},
-      image: "/images/room2.jpeg",
+      image: "/images/room2-min.jpeg",
       test: true,
     },
   },
