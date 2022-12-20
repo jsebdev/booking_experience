@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 import { BookingsSection } from "../../components/bookingsSection";
@@ -18,7 +19,12 @@ const SpaceDetails = () => {
         <>
           <h2 className={spaceDetailsStyles.title}>{space.name}</h2>
           <div className={spaceDetailsStyles.imageContainer}>
-            <img src={imageSrc(space.image, space.test)} />
+            <Image
+              className={spaceDetailsStyles.image}
+              src={imageSrc(space.image, space.test)}
+              fill
+              alt="space"
+            />
           </div>
           {space.description
             ?.split(/[\n\r]/)

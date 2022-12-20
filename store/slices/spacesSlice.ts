@@ -151,7 +151,6 @@ const booking2WithDates = (booking: Booking): Booking => ({
   end_date: new Date(booking.end_date),
 });
 const space2WithDates = (space: Space): Space => {
-  // console.log("152: space >>>", space);
   return {
     ...space,
     bookings: Object.values(space.bookings).reduce<Bookings>(

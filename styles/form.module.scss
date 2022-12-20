@@ -25,17 +25,31 @@
     .imageInputContainer {
       display: flex;
       justify-content: center;
-      .imageInput {
-        cursor: pointer;
-        .imageContainer {
-          max-width: 50%;
-          img {
-            max-width: 150px;
+      .imageLabel {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        .imageInput {
+          display: flex;
+          justify-content: center;
+          .imageContainer {
+            width: 100%;
+            position: relative;
+            max-width: 60%;
+            aspect-ratio: 1;
+            .image {
+              max-width: 150px;
+              object-fit: contain;
+              cursor: pointer;
+            }
           }
-        }
-        .imageButton {
-          padding: 1rem;
-          border: 1px dashed var(--doted-border);
+          .imageButton {
+            cursor: pointer;
+            padding: 1rem;
+            border: 1px dashed var(--doted-border);
+            width: min-content;
+            white-space: nowrap;
+          }
         }
       }
     }

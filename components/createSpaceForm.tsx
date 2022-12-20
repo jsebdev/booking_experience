@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import { connect } from "react-redux";
 import { Space } from "../store/slices/spaces.types";
@@ -42,7 +43,7 @@ export const CreateSpaceForm = connect(null, (dispatch) => ({
           />
         </label>
         <div className={formStyles.imageInputContainer}>
-          <label htmlFor="space_image">
+          <label htmlFor="space_image" className={formStyles.imageLabel}>
             <input
               id="space_image"
               name="space_image"
@@ -54,7 +55,12 @@ export const CreateSpaceForm = connect(null, (dispatch) => ({
             <div className={formStyles.imageInput}>
               {selectedImage ? (
                 <div className={formStyles.imageContainer}>
-                  <img src={selectedImage} alt="space" />
+                  <Image
+                    src={selectedImage}
+                    alt="space"
+                    fill
+                    className={formStyles.image}
+                  />
                 </div>
               ) : (
                 <div className={formStyles.imageButton}>

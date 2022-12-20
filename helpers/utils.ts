@@ -8,5 +8,5 @@ export const imageSrc = (
   if (typeof image === "object") {
     return URL.createObjectURL(image as unknown as File);
   }
-  return "images/no-image.png";
+  return "/images/no-image.png";
 };
