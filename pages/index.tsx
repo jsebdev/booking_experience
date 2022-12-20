@@ -1,3 +1,4 @@
+import React from "react";
 import { SpacesGrid } from "../components/spacesGrid";
 import { useAppSelector } from "../store/store.hooks";
 import { selectSpaces } from "../store/slices/spacesSlice";
