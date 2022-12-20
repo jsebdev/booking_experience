@@ -50,8 +50,8 @@ export const BookingItem = ({
     <div className={bookingItemStyles.bookingContainer}>
       <div>Current Booking:</div>
       <div>
-        {format(booking.start_date as Date, "PPP")} to{" "}
-        {format(booking.end_date as Date, "PPP")}
+        {format(booking.start_date as Date, "PP")} to{" "}
+        {format(booking.end_date as Date, "PP")}
       </div>
       <DateRangeInput
         range={range}

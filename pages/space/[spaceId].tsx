@@ -19,11 +19,16 @@ const SpaceDetails = () => {
         <>
           <h2 className={spaceDetailsStyles.title}>{space.name}</h2>
           <div className={spaceDetailsStyles.imageContainer}>
-            <Image
+            {/* <Image
               className={spaceDetailsStyles.image}
               src={imageSrc(space.image, space.test)}
               fill
               alt="space"
+            /> */}
+            <img
+              src={imageSrc(space.image, space.test)}
+              alt="space"
+              className={spaceDetailsStyles.image}
             />
           </div>
           {space.description

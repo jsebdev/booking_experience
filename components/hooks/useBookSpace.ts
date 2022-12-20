@@ -41,9 +41,9 @@ export const useBookSpace = ({
   let footer = "Please pick the first day.";
   if (range?.from) {
     if (!range.to) {
-      footer = format(range.from, "PPP");
+      footer = format(range.from, "PP");
     } else if (range.to) {
-      footer = `${format(range.from, "PPP")}–${format(range.to, "PPP")}`;
+      footer = `${format(range.from, "PP")}–${format(range.to, "PP")}`;
     }
   }
   const disabledDays: Matcher[] = bookings
@@ -70,10 +70,10 @@ export const useBookSpace = ({
       setErrorMessage(
         `This dates overlaps the booking between ${format(
           overlapping.overlappingBooking!.start_date as Date,
-          "PPP"
+          "PP"
         )} and ${format(
           overlapping.overlappingBooking!.end_date as Date,
-          "PPP"
+          "PP"
         )}`
       );
       return true;

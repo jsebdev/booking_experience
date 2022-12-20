@@ -33,10 +33,10 @@
           display: flex;
           justify-content: center;
           .imageContainer {
-            width: 100%;
-            position: relative;
-            max-width: 60%;
             aspect-ratio: 1;
+            position: relative;
+            max-width: 150px;
+            height: 150px;
             .image {
               max-width: 150px;
               object-fit: contain;

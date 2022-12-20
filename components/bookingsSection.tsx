@@ -44,8 +44,8 @@ export const BookingsSection = ({ bookings }: BookingsSectionProps) => {
                     className={bookingSectionStyles.booking}
                     key={booking.id}
                   >
-                    {format(booking.start_date as Date, "PPP")} ..{" "}
-                    {format(booking.end_date as Date, "PPP")}
+                    {format(booking.start_date as Date, "PP")} ..{" "}
+                    {format(booking.end_date as Date, "PP")}
                   </div>
                 ))}
             </>
