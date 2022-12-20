@@ -21,7 +21,7 @@ const SpaceDetails = () => {
             <img src={imageSrc(space.image, space.test)} />
           </div>
           {space.description
-            .split(/[\n\r]/)
+            ?.split(/[\n\r]/)
             .filter((p) => p !== "")
             .map((p, i) => (
               <div className={spaceDetailsStyles.description} key={i}>
@@ -29,9 +29,12 @@ const SpaceDetails = () => {
               </div>
             ))}
           <h3 className={spaceDetailsStyles.sectionTitle}>Current Bookings:</h3>
-          <BookingsSection bookings={space.bookings} />
+          <BookingsSection bookings={Object.values(space.bookings)} />
           <h3 className={spaceDetailsStyles.sectionTitle}>Make new booking:</h3>
-          <BookSection bookings={space.bookings} spaceId={spaceId as string} />
+          <BookSection
+            bookings={Object.values(space.bookings)}
+            spaceId={spaceId as string}
+          />
         </>
       ) : (
         <p>space not found</p>

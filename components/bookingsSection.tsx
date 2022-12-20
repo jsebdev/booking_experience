@@ -6,7 +6,7 @@ import { Modal } from "./modal";
 import { BookingItem } from "./bookingItem";
 
 interface BookingsSectionProps {
-  bookings: Bookings;
+  bookings: Booking[];
 }
 
 export const BookingsSection = ({ bookings }: BookingsSectionProps) => {
@@ -30,11 +30,13 @@ export const BookingsSection = ({ bookings }: BookingsSectionProps) => {
       </Modal>
       <div className={bookingSectionStyles.bookingsContainer}>
         <div className={bookingSectionStyles.bookings}>
-          {Object.keys(bookings).length > 0 ? (
+          {bookings.length > 0 ? (
             <>
-              {Object.values(bookings)
+              {bookings
                 .sort(
-                  (bA, bB) => bA.start_date.getTime() - bB.start_date.getTime()
+                  (bA, bB) =>
+                    (bA.start_date as Date).getTime() -
+                    (bB.start_date as Date).getTime()
                 )
                 .map((booking) => (
                   <div
@@ -42,8 +44,8 @@ export const BookingsSection = ({ bookings }: BookingsSectionProps) => {
                     className={bookingSectionStyles.booking}
                     key={booking.id}
                   >
-                    {format(booking.start_date, "PPP")} ..{" "}
-                    {format(booking.end_date, "PPP")}
+                    {format(booking.start_date as Date, "PPP")} ..{" "}
+                    {format(booking.end_date as Date, "PPP")}
                   </div>
                 ))}
             </>

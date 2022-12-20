@@ -1,12 +1,12 @@
 import React from "react";
-import { Bookings } from "../store/slices/spaces.types";
+import { Booking, Bookings } from "../store/slices/spaces.types";
 import bookSectionStyles from "../styles/bookSection.module.scss";
 import { Button } from "./button";
 import { DateRangeInput } from "./dateRangeInput";
 import { useBookSpace } from "./hooks/useBookSpace";
 
 interface BookSectionProps {
-  bookings: Bookings;
+  bookings: Booking[];
   spaceId: string;
 }
 
@@ -18,7 +18,7 @@ const BookSection = ({ bookings, spaceId }: BookSectionProps) => {
     disabledDays,
     errorMessage,
     onCreateBooking,
-  } = useBookSpace({ bookings: Object.values(bookings), spaceId });
+  } = useBookSpace({ bookings, spaceId });
   return (
     <div className={bookSectionStyles.bookSection}>
       <DateRangeInput

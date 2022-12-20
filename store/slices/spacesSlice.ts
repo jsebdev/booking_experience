@@ -134,7 +134,9 @@ export const selectSpaces = (state: RootState): Spaces =>
 export const selectSpace =
   (id: string) =>
   (state: RootState): Space =>
-    space2WithDates(state.spaces.spaces[id]);
+    state.spaces.spaces[id]
+      ? space2WithDates(state.spaces.spaces[id])
+      : state.spaces.spaces[id];
 export const selectBooking =
   (bookingId: string, spaceId: string) =>
   (state: RootState): Booking =>
@@ -148,18 +150,21 @@ const booking2WithDates = (booking: Booking): Booking => ({
   start_date: new Date(booking.start_date),
   end_date: new Date(booking.end_date),
 });
-const space2WithDates = (space: Space): Space => ({
-  ...space,
-  bookings: Object.values(space.bookings).reduce<Bookings>(
-    (bookings, booking) => {
-      bookings[booking.id] = booking2WithDates(booking);
-      return bookings;
-    },
-    {}
-  ),
-});
+const space2WithDates = (space: Space): Space => {
+  // console.log("152: space >>>", space);
+  return {
+    ...space,
+    bookings: Object.values(space.bookings).reduce<Bookings>(
+      (bookings, booking) => {
+        bookings[booking.id] = booking2WithDates(booking);
+        return bookings;
+      },
+      {}
+    ),
+  };
+};
 const spaces2WithDates = (spaces: Spaces): Spaces =>
   Object.values(spaces).reduce<Spaces>((spaces, space) => {
-    spaces[space.id] = space2WithDates(space);
+    if (space.id) spaces[space.id] = space2WithDates(space);
     return spaces;
   }, {});
