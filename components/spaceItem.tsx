@@ -24,12 +24,7 @@ export const Item = ({ space }: { space: Space }) => {
         </div>
         <h4>{space.name}</h4>
         <div className={spaceItemStyles.descriptionContainer}>
-          {space.description
-            .split(/[\n\r]/)
-            .filter((p) => p !== "")
-            .map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+          {space.description}
         </div>
       </Link>
     </div>
