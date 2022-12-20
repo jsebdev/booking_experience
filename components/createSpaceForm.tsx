@@ -50,7 +50,7 @@ export const CreateSpaceForm = connect(null, (dispatch) => ({
               type="file"
               hidden
               onChange={handleImageChange}
-              accept=".png,.jpg,.jpeg"
+              accept=".png,.jpg,.jpeg,.webp"
             />
             <div className={formStyles.imageInput}>
               {selectedImage ? (
