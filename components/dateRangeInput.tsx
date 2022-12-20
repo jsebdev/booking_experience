@@ -15,6 +15,7 @@ interface DateRangeInputProps {
   footer: string;
   disabledDays: Matcher[];
   errorMessage: string | null;
+  defaultMonth?: Date;
 }
 
 export const DateRangeInput = ({
@@ -23,11 +24,11 @@ export const DateRangeInput = ({
   setRange,
   disabledDays,
   errorMessage,
+  defaultMonth,
 }: DateRangeInputProps) => {
   const dayPickerClassName: ClassNames = {
     ...dayPickerStyles,
     day_today: dateRangeInputStyles.today,
-    // day: dateRangeInputStyles.day,
   };
   return (
     <div className={dateRangeInputStyles.container}>
@@ -38,6 +39,7 @@ export const DateRangeInput = ({
         footer={footer}
         onSelect={setRange}
         disabled={disabledDays}
+        defaultMonth={defaultMonth}
       />
       {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>

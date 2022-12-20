@@ -1,5 +1,6 @@
-import { format, subDays } from "date-fns";
-import { MouseEventHandler, useState } from "react";
+import { sortBookings } from "./../../helpers/utils";
+import { addDays, format, subDays } from "date-fns";
+import { MouseEventHandler, useEffect, useState } from "react";
 import { DateRange, Matcher } from "react-day-picker";
 import { Booking } from "../../store/slices/spaces.types";
 import {
@@ -37,6 +38,7 @@ export const useBookSpace = ({
   const dispatch = useAppDispatch();
   const [range, setRange] = useState<DateRange | undefined>(defaultRange);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [disabledDays, setDisabledDays] = useState<Matcher[]>([]);
 
   let footer = "Please pick the first day.";
   if (range?.from) {
@@ -46,13 +48,31 @@ export const useBookSpace = ({
       footer = `${format(range.from, "PP")}–${format(range.to, "PP")}`;
     }
   }
-  const disabledDays: Matcher[] = bookings
-    .filter((booking) => booking.id !== bookingId)
-    .map((booking) => ({
-      from: booking.start_date as Date,
-      to: subDays(booking.end_date as Date, 1),
-    }));
-  disabledDays.push({ before: new Date() });
+
+  useEffect(() => {
+    let nextRangeShifted = false;
+    const days: Matcher[] = sortBookings(bookings)
+      .filter((booking) => booking.id !== bookingId)
+      .map((booking) => {
+        let startRange: number = 0;
+        if (
+          !nextRangeShifted &&
+          range?.from?.getTime() &&
+          (booking.start_date as Date).getTime() > range?.from?.getTime()
+        ) {
+          nextRangeShifted = true;
+          startRange = 1;
+        }
+        const from = addDays(booking.start_date as Date, startRange);
+        const to = subDays(booking.end_date as Date, 1);
+
+        if (from.getTime() > to.getTime()) return { from: from, to: from };
+
+        return { from, to };
+      });
+    days.push({ before: new Date() });
+    if (days !== disabledDays) setDisabledDays(days);
+  }, [range, bookings]);
 
   const checkErrors = (): boolean => {
     if (!range?.from || !range?.to) {

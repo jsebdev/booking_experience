@@ -1,6 +1,7 @@
 import { format } from "date-fns";
-import React from "react";
+import React, { useMemo } from "react";
 import { DateRange } from "react-day-picker";
+import { Booking } from "../store/slices/spaces.types";
 import { selectBooking, selectSpace } from "../store/slices/spacesSlice";
 import { useAppSelector } from "../store/store.hooks";
 import bookingItemStyles from "../styles/bookingItem.module.scss";
@@ -12,12 +13,14 @@ interface BookingItemProps {
   bookingId: string;
   onClose: () => void;
   spaceId: string;
+  bookings: Booking[];
 }
 
 export const BookingItem = ({
   bookingId,
   spaceId,
   onClose,
+  bookings,
 }: BookingItemProps) => {
   const booking = useAppSelector(selectBooking(bookingId, spaceId));
   const space = useAppSelector(selectSpace(spaceId));
@@ -35,7 +38,7 @@ export const BookingItem = ({
     onDeleteBooking,
     disabled,
   } = useBookSpace({
-    bookings: Object.values(space.bookings),
+    bookings: bookings,
     spaceId: booking.spaceId,
     bookingId: booking.id,
     defaultRange: currentRange,
@@ -59,6 +62,7 @@ export const BookingItem = ({
         setRange={setRange}
         disabledDays={disabledDays}
         errorMessage={errorMessage}
+        defaultMonth={currentRange.from}
       />
       <Button onClick={onUpdateBooking} disabled={disabled}>
         Update Booking
